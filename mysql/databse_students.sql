@@ -1,11 +1,11 @@
 use db;
 
 CREATE TABLE students(
-    StudentID int not null AUTO_INCREMENT,
-    FirstName varchar(100) NOT NULL,
-    Surname varchar(100) NOT NULL,
-    PRIMARY KEY (StudentID)
+    estudanteID int not null AUTO_INCREMENT,
+    nome varchar(100) NOT NULL,
+    sobre_nome varchar(100) NOT NULL,
+    PRIMARY KEY (estudanteID)
 );
 
-INSERT INTO students(FirstName, Surname)
-VALUES("John", "Andersen"), ("Emma", "Smith");  
+INSERT INTO students(nome, sobre_nome)
+VALUES("João", "Marcos"), ("Naruto", "Uzumaki");  

@@ -16,25 +16,25 @@ def list_students():
     students = cursor.fetchall()
     connection.close()
 
-    students_list = [{'ID': student[0], 'FirstName': student[1], 'Surname': student[2]} for student in students]
+    students_list = [{'ID': student[0], 'nome': student[1], 'sobre_nome': student[2]} for student in students]
     return jsonify(students_list)
 
 @app.route('/students', methods=['POST'])
 def add_student():
     data = request.json
-    first_name = data.get('first_name')
-    surname = data.get('surname')
+    first_name = data.get('nome')
+    surname = data.get('sobre_nome')
 
     if not first_name or not surname:
-        return jsonify({"error": "First name and surname are required"}), 400
+        return jsonify({"error": "nome e sobre nome obrigatorios"}), 400
 
     connection = connect_to_db()
     cursor = connection.cursor()
-    cursor.execute('INSERT INTO students (FirstName, Surname) VALUES (%s, %s)', (first_name, surname))
+    cursor.execute('INSERT INTO students (nome, sobre_nome) VALUES (%s, %s)', (first_name, surname))
     connection.commit()
     connection.close()
 
-    return jsonify({"message": "Student added successfully!"}), 201
+    return jsonify({"message": "estudante adicionado!"}), 201
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=5000)
